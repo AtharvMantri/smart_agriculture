@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Soil Health Input - Your Smart Agriculture System{% endblock %}
+
+{% block body %}
+<style>
+    /* Add your custom styles here */
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #3498db;
+    }
+
+    .soil-health-form {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    .submit-button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+        background-color: #2980b9;
+    }
+
+    .result-section {
+        margin-top: 20px;
+    }
+
+    h2 {
+        color: #3498db;
+    }
+</style>
+<div class="container">
+    <h1>Soil Health Input Page</h1>
+
+    <!-- Form Section -->
+    <form method="post" action="/soil_health" class="soil-health-form">
+        <div class="form-group">
+            <label for="ph">pH:</label>
+            <input type="text" id="ph" name="ph" required placeholder="7" value="{{ form_data.get('ph', '') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="moisture">Moisture:</label>
+            <input type="text" id="moisture" name="moisture" required placeholder="50%"
+                value="{{ form_data.get('moisture', '') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="nutrients">Nutrients:</label>
+            <input type="text" id="nutrients" name="nutrients" required placeholder="phosphorus, iron etc"
+                value="{{ form_data.get('nutrients', '') }}">
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+
+    {% if response %}
+    <!-- Result Section -->
+    <div class="result-section">
+        <h2>Soil Health Result</h2>
+        <p>{{ response }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

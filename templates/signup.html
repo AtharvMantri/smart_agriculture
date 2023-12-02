@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup - Your Smart Agriculture System{% endblock %}
+
+{% block body %}
+    <style>
+        /* Add your custom styles for the signup page here */
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .signup-container h2 {
+            color: #fff;
+            background-color: #e74c3c;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #e74c3c;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        .error {
+            color: #e74c3c;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form action="{{ url_for('signup') }}" method="post">
+            <!-- Add your signup form fields here -->
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+{% endblock %}

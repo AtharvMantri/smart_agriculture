@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Soil Health Input - Your Smart Agriculture System{% endblock %}
+
+{% block body %}
+<style>
+    /* Add your custom styles here */
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #3498db;
+    }
+
+    .faq_form {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    .submit-button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+        background-color: #2980b9;
+    }
+
+    .result-section {
+        margin-top: 20px;
+    }
+
+    h2 {
+        color: #3498db;
+    }
+</style>
+<div class="container">
+    <h1>FAQ Solver</h1>
+
+    <!-- Form Section -->
+    <form method="post" action="/faq" class="faq_form">
+        <div class="form-group">
+            <label for="faq">Question:</label>
+            <input type="text" id="faq" name="faq" required placeholder="In what wheather conditions should I plant wheat?" value="{{ form_data.get('question', '') }}">
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+
+    {% if response %}
+    <!-- Result Section -->
+    <div class="result-section">
+        <h2>Soil Health Result</h2>
+        <p>{{ response }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Smart Agriculture System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;  /* Stick the navbar to the top */
+            width: 100%;
+            top: 0;
+            z-index: 1000;  /* Ensure it's above other elements */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 15px;
+            border-radius: 3px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #34495e;
+            transform: scale(1.05);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: transform 0.5s;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+
+        .logo:hover,
+        .logo img:hover {
+            transform: rotate(360deg);
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-dropdown #user-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            z-index: 1;
+            top: 40px;
+            right: 20px;
+        }
+
+        .user-dropdown #user-menu a {
+            color: #333;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .user-dropdown #user-menu a:hover {
+            background-color: #ecf0f1;
+        }
+
+        .nav-placeholder {
+            /* Add a placeholder to prevent content from being hidden behind the fixed navbar */
+            height: 60px;
+        }
+
+        .footer-placeholder {
+            /* Add a placeholder for the footer */
+            height: 30px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 5px 0;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+        }
+
+        .user-initials {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 5px solid green;
+            border-left: 5px solid white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a class="logo" href="/">AGROSMART</a>
+
+        <div class="nav-links">
+            <a href="/soil_health">Soil Health</a>
+            <a href="/faq">FAQ Solver</a>
+            <a href="/predictor">Predictor</a>
+
+            {% if user_authenticated %}
+            <div class="user-dropdown">
+                <div class="user-initials" onclick="toggleUserMenu()">{{ user_name[:1] }}</div>
+                <div id="user-menu" style="display: none;">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{{ url_for('get_started') }}">Get Started</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <br><br><br><br><br><br><br><br>
+
+    <!-- Add a placeholder for the fixed navbar -->
+    <div class="nav-placeholder"></div>
+
+    <div>
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- Add a placeholder for the footer -->
+    <div class="footer-placeholder"></div>
+
+    <footer>
+        &copy; 2023 AGROSMART. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleUserMenu() {
+            var userMenu = document.getElementById("user-menu");
+            userMenu.style.display = (userMenu.style.display === "none" || userMenu.style.display === "") ? "block" : "none";
+        }
+    </script>
+</body>
+
+</html>
